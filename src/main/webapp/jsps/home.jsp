@@ -10,8 +10,8 @@
 </head>
 <body>
 <h1 align="center">Welcome to Landmark Software Solutions, Toronto, Canada Office.</h1>
-<h2 align="center">We are developing and supporting quality  Software Solutions to millions of clients.
-	We offer  Training for DevOps with Linux and Cloud equipping IT Engineers for best performance.</h2>
+<h1 align="center">We are developing and supporting quality  Software Solutions to millions of clients.
+	We offer  Training for DevOps with Linux and Cloud equipping IT Engineers for best performance.</h1>
 <hr>
 <br>
 	<h1><h3> Server Side IP Address </h3><br>
