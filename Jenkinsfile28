@@ -1,0 +1,29 @@
+node{
+ def mavenHome = tool name: 'maven3.8.6'   
+ stage('1cloneCode'){
+    git 'https://github.com/stanman2020/maven-web-application'
+    //git "https://github.com/LandmakTechnology/maven-web-application"
+    //sh "git clone https://github.com/stanman2020/maven-web-application"
+    //bat "git clone https://github.com/LandmakTechnology/maven-web-application"
+ } 
+ stage('2Test&Build'){
+    sh "${mavenHome}/bin/mvn install"
+ } 
+ stage('3CodeQuality'){
+    sh "${mavenHome}/bin/mvn sonar:sonar"
+ }   
+ stage('4UploadArtifacts'){
+    //sh "${mavenHome}/bin/mvn deploy"
+ } 
+ stage('5deploy_uat'){
+ deploy adapters: [tomcat9(credentialsId: 'tomcat-credential', path: '', url: 'http://15.222.242.151:8090/')], contextPath: null, war: 'target/*war'
+      }
+ stage('6Approval'){
+     timeout(time:9, unit:'HOURS') {
+        input message: 'Application ready for deployment, Please review and approve'
+ }
+ }
+ stage('7deploy_prod'){
+     deploy adapters: [tomcat9(credentialsId: 'tomcat-credential', path: '', url: 'http://15.222.242.151:8090/')], contextPath: null, war: 'target/*war'
+ }
+} 
